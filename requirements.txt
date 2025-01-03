@@ -1,0 +1,13 @@
+selenium
+tensorflow
+xlrd
+openpyxl
+requests
+pandas
+keras
+numpy
+instascrape
+datasets
+xlsxwriter
+openai
+streamlit
