@@ -82,7 +82,18 @@ with st.container():
                 postUrl = value[list(value.keys())[1]]
             #js_popup("KSI Popup Content")
 st.write("")
-driver = webdriver.Chrome()
+# Configure Chrome options
+chrome_options = Options()
+chrome_options.add_argument("--headless")  # Run Chrome in headless mode
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
+
+# Specify the path to the ChromeDriver executable
+chrome_driver_path = "/usr/local/bin/chromedriver"
+
+# Initialize the WebDriver
+service = Service(chrome_driver_path)
+driver = webdriver.Chrome(service=service, options=chrome_options)
 
     # Open a website
 url = "https://www.instagram.com"
