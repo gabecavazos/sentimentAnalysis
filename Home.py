@@ -37,6 +37,7 @@ with st.container():
     st.subheader("Log in to Instagram")
     st.session_state.user = st.text_input("Username:")
     st.session_state.password = st.text_input('Password:', type = 'password')
+    st.session_state.posturl = st.text_input("Post URL:")
 spacer = st.markdown("<div style = 'height: 25px'></div", unsafe_allow_html = True)
 peopleValues = {
     1: {
@@ -58,8 +59,9 @@ peopleValues = {
 }
 username = st.session_state.user
 password = st.session_state.password
+postUrl = st.session_state.posturl
 spacer = st.empty()
-postUrl = ""
+
 with st.container():
     columns = st.columns(4)
     for key, value in peopleValues.items():
