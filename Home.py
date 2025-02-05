@@ -30,7 +30,7 @@ with st.container():
     col1, col2 = st.columns([1,2])
     with col2:
         st.title("VIBE CHECK")
-    st.subheader("Go to the search tab and enter the URL of any verified Instagram account. Within seconds, the true sentiments of the social media influencer shall be revealed!")
+    st.subheader("Enter your Username, Password, and the URL of the Instagram post you want to analyze. Please ensure the link ends with /")
 
 #---- LOG IN ----
 with st.container():
@@ -181,7 +181,7 @@ cleanedComments = cleanComments(comments)
 
 newList = [i for i in range(1, len(cleanedComments)+1)]
 df = pd.DataFrame({"Indexes": newList, "Comments": cleanedComments})
-writer = pd.ExcelWriter('test.xlsx', engine='xlsxwriter')
+writer = pd.ExcelWriter('comments.xlsx', engine='xlsxwriter')
 df.to_excel(writer, sheet_name='welcome', index=False)
 writer.close()
 
@@ -207,7 +207,7 @@ for comment in df.iloc[:, 1].tolist():
     chat_log.append({"role":"assistant", "content":gpt_response.strip("\n").strip()})
 
 #checks overall sentiment
-chat_log.append({"role":"user", "content":"From all the past messages, is there generally a negative or positive sentiment? What kind of sentiment is it: political, emotional, etc.? Also, ignore any programming syntax, languages, names, usernames, and platform features. Only consider the comments that you would see under an instagram post"})
+chat_log.append({"role":"user", "content":"From all the past messages, can you generate themes around what is contained? What kind of sentiment is it: political, emotional, etc.? Also, ignore any programming syntax, languages, names, usernames, and platform features. Only consider the comments that you would see under an instagram post"})
 #puts gpt response into chat_log
 response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
@@ -221,7 +221,7 @@ st.markdown("<h3 style = 'text-align:center'>Sentiment: {}</h3> ".format(gpt_res
 with st.container():
     st.write('----')
     st.write("Brought to you by Python in the Pitt")
-    st.write("--Vidhya Vishwanath, Laya Satish, Isha Singh--")
+    st.write("--Vidhya Vishwanath, Laya Satish, Isha Singh, revised for use by Gabe C--")
     
 
 
